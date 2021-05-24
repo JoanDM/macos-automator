@@ -1,8 +1,8 @@
-# Mouse and keyboard automator
+# MacOS mouse and keyboard automator :apple:
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python 3.7](https://img.shields.io/badge/python-3.8.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
-Tools to record mouse & keyboard procedures on MacOS. Quickly automate boring stuff that don't have obvious APIs for monitoring
+Tools to record mouse & keyboard procedures on MacOS. Quickly automate boring stuff that don't have obvious APIs for monitoring.
 
 ## Do you have autoenv 1.0 installed on your machine? 
 
