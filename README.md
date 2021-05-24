@@ -47,7 +47,7 @@ If you want to contribute to the codebase, make sure you set the pre-commit hook
 
 If you run 
 ```bash
-python3 automated_processses/hello_world/hello_world.py
+python scripts/hello_world/hello_world.py
 ```
 
 You should see the script taking control of your computer and launching the terminal.
