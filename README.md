@@ -4,21 +4,15 @@
 
 Tools to record mouse & keyboard procedures on MacOS. Quickly automate boring stuff that don't have obvious APIs for monitoring. The scripts are leveraging the use of libraries such as pynput. More info [here](https://pynput.readthedocs.io/en/latest/limitations.html).
 
-## Do you have autoenv 1.0 installed on your machine? 
-
-The repository setup should run automagically! :crystal_ball:
-
-[How to setup autoenv (recommended)](#guide-for-ultimate-repository-setup-with-autoenv)
-
 # QuickStart: One-time setup
 
 Before anything, you must have pyenv installed in order to run the scripts smoothly.
 [How to setup pyenv](#pyenv-guide-for-handling-multiple-python-versions-in-your-mac)
 
-In case you have autoenv installed, the repo should get automatically set up as soon as you `cd macos-mouse-and-keyboard-automator`. :crystal_ball:
+In case you have autoenv installed, the repo should get automatically set up as soon as you `cd macos-mouse-and-keyboard-automator`. :crystal_ball: 
 [How to setup autoenv](#guide-for-ultimate-repository-setup-with-autoenv)
 
-In case you don't have autoenv, you can also manually set up the environment by running:
+In case you don't like autoenv, you can also manually set up the environment by running:
 ```bash
 cd macos-mouse-and-keyboard-automator
 python -mvenv venv
