@@ -22,7 +22,7 @@ pip install -r requirements.txt
 export PYTHONPATH=$(pwd)
 ```
 
-You might also need to give some access rights to your editor/terminal before being able to run the scripts
+You might also need to give some access rights to your terminal before being able to run the scripts:
 ```text
 1. Settings -> Security & Privacy
 2. Click on the Privacy tab
