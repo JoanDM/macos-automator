@@ -44,7 +44,7 @@ If you run
 python scripts/hello_world/hello_world.py
 ```
 
-You should see the script taking control of your computer and launching the terminal.
+You should see the script taking control of your computer and see it launching MacOS Spotlight search and executing a command through Terminal.
 
 # Code formatting
 Code formatting is enforced with [Black](https://black.readthedocs.io/).
