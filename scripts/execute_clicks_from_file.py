@@ -7,7 +7,7 @@ FILE_PATH = _stored_mouse_positions_dir_pathlib / "mouse_positions_example.txt"
 IDLE_TIME = 5
 
 
-def run_infinite_mouse_click():
+def execute_clicks_from_file():
     automator = Automator()
 
     print(f"\nStarted automated process!!\n" f"To stop the process use ctrl+C...\n")
@@ -27,4 +27,4 @@ def run_infinite_mouse_click():
 
 
 if __name__ == "__main__":
-    run_infinite_mouse_click()
+    execute_clicks_from_file()
