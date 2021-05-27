@@ -4,6 +4,7 @@ from pynput.mouse import Button
 from pynput.keyboard import Key
 from datetime import datetime
 import subprocess
+import ast
 
 
 class Automator(object):
@@ -95,3 +96,8 @@ class Automator(object):
         self.keyboard.press(Key.enter)
         self.keyboard.release(Key.enter)
         self.idle_time(0.5)
+
+    def get_mouse_positions_from_file(self, file_path):
+
+        positions = open(file_path)
+        return ast.literal_eval(positions.readline())
