@@ -9,12 +9,12 @@ A set of scripts to record mouse & keyboard procedures and beyond on MacOS. Quic
 Before anything, you must have pyenv installed in order to run the scripts smoothly.
 [How to setup pyenv](#pyenv-guide-for-handling-multiple-python-versions-in-your-mac)
 
-In case you have autoenv installed, the repo should get automatically set up as soon as you `cd macos-mouse-and-keyboard-automator`. :crystal_ball: 
+In case you have autoenv installed, the repo should get automatically set up as soon as you `cd macos-automator`. :crystal_ball: 
 [How to setup autoenv](#guide-for-ultimate-repository-setup-with-autoenv)
 
 In case you don't like autoenv, you can also manually set up the environment by running:
 ```bash
-cd macos-mouse-and-keyboard-automator
+cd macos-automator
 python -mvenv venv
 source venv/bin/activate
 pip install --upgrade pip setuptools wheel
@@ -101,14 +101,14 @@ $ pyenv install 3.8.7
 When running Python via pyenv, you might get an error such as:
 ```shell
 $ python
-version `3.8.7' is not installed (set by /some-path/macos-mouse-and-keyboard-automator/.python-version)
+version `3.8.7' is not installed (set by /some-path/macos-automator/.python-version)
 ```
 This could mean that the recommended Python version for this repository has been changed and you don't yet have it installed. 
 You can easily install it using ```pyenv install [version]```. You will also have to recreate your virtual environment.
 
 How to check the Python version used in the repository
 ```shell
-$ cd macos-mouse-and-keyboard-automator
+$ cd macos-automator
 $ python --version
 Python 3.7.10
 ```
@@ -123,7 +123,7 @@ $ cd some-random-dir
 $ python --version
 Python 3.8.7
 $ # but this will not affect the local version
-$ cd macos-mouse-and-keyboard-automator
+$ cd macos-automator
 $ python --version
 Python 3.7.10
 ```
