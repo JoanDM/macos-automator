@@ -2,7 +2,7 @@ from automator_class import Automator
 from config import _stored_mouse_positions_dir_pathlib
 import ast
 
-FILE_PATH = _stored_mouse_positions_dir_pathlib / "test.txt"
+FILE_PATH = _stored_mouse_positions_dir_pathlib / "mouse_positions_example.txt"
 
 IDLE_TIME = 5
 
