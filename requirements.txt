@@ -1,0 +1,9 @@
+black>=19.10b0
+pynput==1.6.8
+pip==20.0.2
+pre-commit>=2.4.0
+pyobjc-core==6.1
+pyobjc-framework-Cocoa==6.1
+pyobjc-framework-Quartz==6.1
+setuptools==41.2.0
+six==1.14.0
