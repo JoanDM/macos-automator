@@ -1,8 +1,8 @@
-# MacOS mouse and keyboard automator :apple:
+# MacOS automator :apple:
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python 3.7](https://img.shields.io/badge/python-3.8.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
-Tools to record mouse & keyboard procedures on MacOS. Quickly automate boring stuff that don't have obvious APIs for monitoring. The scripts are leveraging the use of libraries such as pynput. More info [here](https://pynput.readthedocs.io/en/latest/limitations.html).
+A set of scripts to record mouse & keyboard procedures and beyond on MacOS. Quickly automate boring stuff that don't have obvious APIs for monitoring. The scripts are leveraging the use of libraries such as pynput. More info [here](https://pynput.readthedocs.io/en/latest/limitations.html).
 
 # QuickStart: One-time setup
 
