@@ -1,16 +1,21 @@
+import subprocess
+import ast
 from pynput.mouse import Controller as MouseController
 from pynput.keyboard import Controller as KeyboardController
 from pynput.mouse import Button
 from pynput.keyboard import Key
-from datetime import datetime
-import subprocess
-import ast
+from datetime import datetime, timedelta
+from config import _chromedriver_pathlib
+from beepy import beep
+from selenium.webdriver.support.ui import Select
+from selenium import webdriver
 
 
 class Automator(object):
     def __init__(self):
         self.mouse = MouseController()
         self.keyboard = KeyboardController()
+        self.driver = None
 
     def idle_time(self, timeout_sec):
         previous_time = datetime.now()
@@ -20,7 +25,7 @@ class Automator(object):
             current_time = datetime.now()
             time_diff = (current_time - previous_time).total_seconds()
 
-    def click(self, mouse_position, idle_time=0.05):
+    def click(self, mouse_position, idle_time=0.15):
         self.mouse.position = mouse_position
         self.idle_time(idle_time)
         self.mouse.click(Button.left, 1)
@@ -98,6 +103,107 @@ class Automator(object):
         self.idle_time(0.5)
 
     def get_mouse_positions_from_file(self, file_path):
-
         positions = open(file_path)
         return ast.literal_eval(positions.readline())
+
+    def beep(self, sound=1):
+        beep(sound)
+
+    def initialize_browser(self, minimize_css_overhead=False):
+        options = webdriver.ChromeOptions()
+        if minimize_css_overhead:
+            prefs = {
+                "profile.default_content_setting_values": {
+                    "cookies": 2,
+                    "images": 2,
+                    # 'javascript': 2,
+                    "plugins": 2,
+                    "popups": 2,
+                    "geolocation": 2,
+                    "notifications": 2,
+                    "auto_select_certificate": 2,
+                    "fullscreen": 2,
+                    "mouselock": 2,
+                    "mixed_script": 2,
+                    "media_stream": 2,
+                    "media_stream_mic": 2,
+                    "media_stream_camera": 2,
+                    "protocol_handlers": 2,
+                    "ppapi_broker": 2,
+                    "automatic_downloads": 2,
+                    "midi_sysex": 2,
+                    "push_messaging": 2,
+                    "ssl_cert_decisions": 2,
+                    "metro_switch_to_desktop": 2,
+                    "protected_media_identifier": 2,
+                    "app_banner": 2,
+                    "site_engagement": 2,
+                    "durable_storage": 2,
+                }
+            }
+            options.add_argument("--start-maximized")
+            options.add_argument("--disable-infobars")
+            options.add_argument("--disable-extensions")
+            options.add_experimental_option("prefs", prefs)
+
+        self.driver = webdriver.Chrome(
+            options=options, executable_path=_chromedriver_pathlib
+        )
+
+    def launch_website(self, url, idle_time=0):
+        self.driver.get(url)
+        self.idle_time(idle_time)
+
+    def get_current_website(self):
+        return self.driver.current_url
+
+    def select_dropdown_list_xpath(self, xpath, text):
+        select = Select(self.driver.find_element_by_xpath(xpath))
+
+        # select by visible text
+        select.select_by_visible_text(text)
+
+        # select by value
+        # select.select_by_value('1')
+
+    def click_xpath(self, xpath):
+        id_found = False
+        while not id_found:
+            try:
+                self.driver.find_element_by_xpath(xpath).click()
+                id_found = True
+            except (IndexError, AttributeError):
+                pass
+                print("click error")
+        self.idle_time(0.25)
+
+    def type_in_xpath(self, xpath, text):
+        id_found = False
+        while not id_found:
+            try:
+                self.driver.find_element_by_xpath(xpath).clear()
+                self.driver.find_element_by_xpath(xpath).send_keys(text)
+                id_found = True
+            except (IndexError, AttributeError):
+                pass
+                print("field error error")
+
+    def get_att_in_xpath(self, xpath):
+        start = datetime.now()
+        id_found = False
+        while not id_found:
+            try:
+                end = datetime.now()
+                if timedelta.total_seconds(end - start) > 2:
+                    self.click_xpath(xpath.split("/button")[0])
+                att = (
+                    self.driver.find_element_by_xpath(xpath)
+                    .get_attribute("src")
+                    .replace("/", "-")
+                    .split("-")[-2]
+                )
+                id_found = True
+            except (IndexError, AttributeError):
+                # print("att error")
+                pass
+        return att
