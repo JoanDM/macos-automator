@@ -13,7 +13,8 @@ def create_valid_file_path(target_file_path):
     i = 1
     while file_path.exists():
         file_path = Path(
-            file_path.parent, f"{target_file_path.stem}_{i}{file_path.suffix}",
+            file_path.parent,
+            f"{target_file_path.stem}_{i}{file_path.suffix}",
         )
         i += 1
 

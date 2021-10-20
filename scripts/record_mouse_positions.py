@@ -1,4 +1,5 @@
 from pynput import mouse
+
 from config import _stored_mouse_positions_dir_pathlib, create_valid_file_path
 
 

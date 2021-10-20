@@ -1,14 +1,16 @@
-import subprocess
 import ast
-from pynput.mouse import Controller as MouseController
-from pynput.keyboard import Controller as KeyboardController
-from pynput.mouse import Button
-from pynput.keyboard import Key
+import subprocess
 from datetime import datetime, timedelta
-from config import _chromedriver_pathlib
+
 from beepy import beep
-from selenium.webdriver.support.ui import Select
+from pynput.keyboard import Controller as KeyboardController
+from pynput.keyboard import Key
+from pynput.mouse import Button
+from pynput.mouse import Controller as MouseController
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+
+from config import _chromedriver_pathlib
 
 
 class Automator(object):
@@ -147,7 +149,7 @@ class Automator(object):
             options.add_experimental_option("prefs", prefs)
 
         self.driver = webdriver.Chrome(
-            options=options, executable_path=_chromedriver_pathlib
+            options=options, executable_path=str(_chromedriver_pathlib)
         )
 
     def launch_website(self, url, idle_time=0):
@@ -166,16 +168,15 @@ class Automator(object):
         # select by value
         # select.select_by_value('1')
 
-    def click_xpath(self, xpath):
+    def click_xpath(self, xpath, idle_time_after_click=0.25):
         id_found = False
         while not id_found:
             try:
                 self.driver.find_element_by_xpath(xpath).click()
                 id_found = True
             except (IndexError, AttributeError):
-                pass
                 print("click error")
-        self.idle_time(0.25)
+        self.idle_time(idle_time_after_click)
 
     def type_in_xpath(self, xpath, text):
         id_found = False
@@ -185,7 +186,6 @@ class Automator(object):
                 self.driver.find_element_by_xpath(xpath).send_keys(text)
                 id_found = True
             except (IndexError, AttributeError):
-                pass
                 print("field error error")
 
     def get_att_in_xpath(self, xpath):
