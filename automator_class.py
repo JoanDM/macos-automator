@@ -104,6 +104,11 @@ class Automator(object):
         self.keyboard.release(Key.enter)
         self.idle_time(0.5)
 
+    def erase_character(self):
+        self.keyboard.press(Key.backspace)
+        self.keyboard.release(Key.backspace)
+        self.idle_time(0.5)
+
     def get_mouse_positions_from_file(self, file_path):
         positions = open(file_path)
         return ast.literal_eval(positions.readline())
