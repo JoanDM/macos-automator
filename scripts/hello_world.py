@@ -20,7 +20,7 @@ def run_automated_process():
         )
         automator.idle_time(3)
         automator.type("echo Hello World")
-        automator.type_enter()
+        automator.press_enter()
 
     except KeyboardInterrupt:
         print("\nProcess interrupted sucessfully")

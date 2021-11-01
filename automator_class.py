@@ -45,20 +45,6 @@ class Automator(object):
         self.mouse.click(Button.left, 3)
         self.idle_time(1)
 
-    def press_cmd_tab(self, idle_time=0.2):
-        self.keyboard.press(Key.cmd)
-        self.keyboard.press(Key.tab)
-        self.keyboard.release(Key.cmd)
-        self.keyboard.release(Key.tab)
-        self.idle_time(idle_time)
-
-    def refresh(self, idle_time=1.5):
-        self.keyboard.press(Key.cmd)
-        self.keyboard.press("r")
-        self.keyboard.release(Key.cmd)
-        self.keyboard.release("r")
-        self.idle_time(idle_time)
-
     def search_spotlight_and_launch(self, text):
         with self.keyboard.pressed(Key.cmd):
             self.idle_time(0.5)
@@ -68,18 +54,8 @@ class Automator(object):
         self.idle_time(1)
         self.keyboard.type(text)
         self.idle_time(3)
-        self.type_enter()
+        self.press_enter()
         self.idle_time(3)
-
-    def save_keyboard_shortcut(self):
-        self.keyboard.press(Key.cmd)
-        self.keyboard.press(Key.shift)
-        self.idle_time(1)
-        self.keyboard.press("s")
-        self.keyboard.release("s")
-        self.keyboard.release(Key.cmd)
-        self.keyboard.release(Key.shift)
-        self.idle_time(4)
 
     def screenshot_keyboard_shortcut(self, idle_time=4):
         self.keyboard.press(Key.cmd)
@@ -99,10 +75,46 @@ class Automator(object):
         self.keyboard.type(text)
         self.idle_time(0.5)
 
-    def type_enter(self):
+    def hold_cmd_key(self):
+        self.keyboard.press(Key.cmd)
+
+    def release_cmd_key(self):
+        self.keyboard.release(Key.cmd)
+
+    def press_enter(self):
         self.keyboard.press(Key.enter)
         self.keyboard.release(Key.enter)
         self.idle_time(0.5)
+
+    def press_cmd_tab(self, idle_time=0.2):
+        self.keyboard.press(Key.cmd)
+        self.keyboard.press(Key.tab)
+        self.keyboard.release(Key.cmd)
+        self.keyboard.release(Key.tab)
+        self.idle_time(idle_time)
+
+    def press_refresh_key(self, idle_time=1.5):
+        self.keyboard.press(Key.cmd)
+        self.keyboard.press("r")
+        self.keyboard.release(Key.cmd)
+        self.keyboard.release("r")
+        self.idle_time(idle_time)
+
+    def press_save_shortcut(self):
+        self.keyboard.press(Key.cmd)
+        self.keyboard.press(Key.shift)
+        self.idle_time(1)
+        self.keyboard.press("s")
+        self.keyboard.release("s")
+        self.keyboard.release(Key.cmd)
+        self.keyboard.release(Key.shift)
+        self.idle_time(4)
+
+    def press_right_arrow(self):
+        self.keyboard.press(Key.right)
+
+    def press_left_arrow(self):
+        self.keyboard.press(Key.left)
 
     def erase_character(self):
         self.keyboard.press(Key.backspace)
