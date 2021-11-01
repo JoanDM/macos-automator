@@ -1,4 +1,6 @@
 import ast
+import smtplib
+import ssl
 import subprocess
 from datetime import datetime, timedelta
 
@@ -7,10 +9,16 @@ from pynput.keyboard import Controller as KeyboardController
 from pynput.keyboard import Key
 from pynput.mouse import Button
 from pynput.mouse import Controller as MouseController
+from requests_html import HTMLSession
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
-from config import _chromedriver_pathlib
+from config import (
+    _chromedriver_pathlib,
+    _default_receiver_email,
+    _default_sender_email,
+    _gmail_app_password,
+)
 
 
 class Automator(object):
@@ -18,6 +26,7 @@ class Automator(object):
         self.mouse = MouseController()
         self.keyboard = KeyboardController()
         self.driver = None
+        self.html_session = None
 
     def idle_time(self, timeout_sec):
         previous_time = datetime.now()
@@ -224,3 +233,19 @@ class Automator(object):
                 # print("att error")
                 pass
         return att
+
+    def start_html_session(self):
+        self.html_session = HTMLSession()
+
+    def send_email(self, subject, content):
+        port = 465  # For SSL
+        smtp_server = "smtp.gmail.com"
+        sender_email = _default_sender_email  # Enter your address
+        receiver_email = _default_receiver_email  # Enter receiver address
+        password = _gmail_app_password
+        message = f"Subject: {subject}\n\n{content}"
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)

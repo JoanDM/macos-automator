@@ -7,6 +7,10 @@ _resources_dir_pathlib = _base_dir_pathlib / "resources"
 _stored_mouse_positions_dir_pathlib = _resources_dir_pathlib / "stored_mouse_positions"
 _chromedriver_pathlib = _resources_dir_pathlib / "chromedriver"
 
+_default_sender_email = "your_email"
+_default_receiver_email = "your_email"
+_gmail_app_password = "gmail_app_password"
+
 
 def create_valid_file_path(target_file_path):
     file_path = target_file_path
