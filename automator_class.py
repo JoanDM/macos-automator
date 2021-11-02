@@ -237,6 +237,9 @@ class Automator(object):
     def start_html_session(self):
         self.html_session = HTMLSession()
 
+    def close_html_session(self):
+        self.html_session.close()
+
     def send_email(self, subject, content):
         port = 465  # For SSL
         smtp_server = "smtp.gmail.com"
@@ -249,3 +252,54 @@ class Automator(object):
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message)
+
+    def send_html_post_request(
+        self, url, json_payload, headers, timeout=5, res_status_code=None
+    ):
+        res = None
+        if res_status_code is not None:
+            try:
+                res = self.html_session.request(
+                    method="POST",
+                    url=url,
+                    json=json_payload,
+                    headers=headers,
+                    timeout=timeout,
+                )
+                if res is not None and res.status_code == res_status_code:
+                    # print("\nSuccessful request!")
+                    pass
+                else:
+                    print("\nInvalid response to POST...")
+            except:
+                print("Connection error on POST request...")
+                self.idle_time(timeout)
+        else:
+            res = self.html_session.request(
+                method="POST",
+                url=url,
+                json=json_payload,
+                headers=headers,
+                timeout=timeout,
+            )
+
+        return res
+
+    def send_get_html_request(self, url, timeout=5, res_status_code=None):
+        res = None
+        if res_status_code is not None:
+            try:
+                res = self.html_session.request(method="GET", url=url, timeout=timeout)
+                # res = self.html_session.get(url=url, timout=5)
+                if res is not None and res.status_code == res_status_code:
+                    # print("\nSuccessful request!")
+                    pass
+                else:
+                    print("\nInvalid response to GET...")
+            except:
+                print("Connection error on GET request...")
+                self.idle_time(timeout)
+        else:
+            res = self.html_session.get(url=url)
+
+        return res
