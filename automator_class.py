@@ -84,11 +84,17 @@ class Automator(object):
         self.keyboard.type(text)
         self.idle_time(0.5)
 
+    def hold_shift_key(self):
+        self.keyboard.press(Key.shift)
+
     def hold_cmd_key(self):
         self.keyboard.press(Key.cmd)
 
     def release_cmd_key(self):
         self.keyboard.release(Key.cmd)
+
+    def release_shift_key(self):
+        self.keyboard.release(Key.shift)
 
     def press_enter(self):
         self.keyboard.press(Key.enter)
