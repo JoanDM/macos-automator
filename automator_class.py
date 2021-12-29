@@ -84,17 +84,29 @@ class Automator(object):
         self.keyboard.type(text)
         self.idle_time(0.5)
 
-    def hold_shift_key(self):
+    def press_space(self):
+        self.keyboard.press(Key.space)
+
+    def press_backspace(self):
+        self.keyboard.press(Key.backspace)
+
+    def press_shift_key(self):
         self.keyboard.press(Key.shift)
 
-    def hold_cmd_key(self):
+    def press_cmd_key(self):
         self.keyboard.press(Key.cmd)
+
+    def press_alt_key(self):
+        self.keyboard.press(Key.alt)
 
     def release_cmd_key(self):
         self.keyboard.release(Key.cmd)
 
     def release_shift_key(self):
         self.keyboard.release(Key.shift)
+
+    def release_alt_key(self):
+        self.keyboard.release(Key.alt)
 
     def press_enter(self):
         self.keyboard.press(Key.enter)
@@ -130,6 +142,9 @@ class Automator(object):
 
     def press_left_arrow(self):
         self.keyboard.press(Key.left)
+
+    def press_down_arrow(self):
+        self.keyboard.press(Key.down)
 
     def erase_character(self):
         self.keyboard.press(Key.backspace)
